@@ -143,7 +143,7 @@ function addToMap(geojson) {
       const latlngs = [first, second];
 
       const speed = get_speed(first, second, seconds_per_segment);
-      console.log(speed);
+      // console.log(speed);
       var style = style_function(speed);
       const line = new L.Polyline(latlngs, style);
       first = lat_lons[x];

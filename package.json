@@ -1,14 +1,16 @@
 {
   "name": "runspeed-map",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Run speed visualization based on Garmin Connect tcx files.",
-  "main": "src/app.js",
+  "main": "server.js",
   "dependencies": {
+    "express": "^4.16.2",
     "tcx": "^0.1.0",
     "webpack": "^3.10.0"
   },
   "scripts": {
     "test": "test",
+    "start": "node server.js",
     "dev": "webpack src/app.js dist/bundle.js -w",
     "postinstall": "webpack src/app.js dist/bundle.js"
   },
