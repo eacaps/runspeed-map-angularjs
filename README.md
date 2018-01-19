@@ -1,4 +1,5 @@
 # runspeed-map
 
-https://github.com/hgoebl/Leaflet.MultiOptionsPolyline
 https://github.com/mapbox/tcx
+
+https://www.npmjs.com/package/tcx-js

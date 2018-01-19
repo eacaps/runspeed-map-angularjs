@@ -1,0 +1,26 @@
+{
+  "name": "runspeed-map",
+  "version": "0.1.0",
+  "description": "Run speed visualization based on Garmin Connect tcx files.",
+  "main": "src/app.js",
+  "dependencies": {
+    "tcx": "^0.1.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "test": "test",
+    "dev": "webpack src/app.js dist/bundle.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eacaps/runspeed-map.git"
+  },
+  "author": "eacaps",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/eacaps/runspeed-map/issues"
+  },
+  "homepage": "https://github.com/eacaps/runspeed-map#readme"
+}
