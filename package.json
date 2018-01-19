@@ -11,7 +11,8 @@
   },
   "scripts": {
     "test": "test",
-    "dev": "webpack src/app.js dist/bundle.js -w"
+    "dev": "webpack src/app.js dist/bundle.js -w",
+    "postinstall": "webpack src/app.js dist/bundle.js"
   },
   "repository": {
     "type": "git",
