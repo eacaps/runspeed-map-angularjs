@@ -4,9 +4,7 @@
   "description": "Run speed visualization based on Garmin Connect tcx files.",
   "main": "src/app.js",
   "dependencies": {
-    "tcx": "^0.1.0"
-  },
-  "devDependencies": {
+    "tcx": "^0.1.0",
     "webpack": "^3.10.0"
   },
   "scripts": {
