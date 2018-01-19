@@ -17,6 +17,32 @@
      <div id="mapid"></div>
   </body>
   <script>
+    const MPS_TO_MPM = 26.8224;
+    const SCALE_RANGE = 15;
+    const COLORS = [
+      '#FF0000',
+      '#EE1100',
+      '#DD2200',
+      '#CC3300',
+      '#BB4400',
+      '#AA5500',
+      '#996600',
+      '#887700',
+      '#778800',
+      '#669900',
+      '#55AA00',
+      '#44BB00',
+      '#33CC00',
+      '#22DD00',
+      '#11EE00',
+      '#00FF00'
+    ];
+
+    function linearScale(rawMin, rawRange, score) {
+      if (rawRange < 1) return 0;
+      return parseInt((Math.max(0, (score - rawMin)) * SCALE_RANGE) / rawRange, 10);
+    }
+
     function fetchLocal(url) {
       return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest
@@ -37,8 +63,23 @@
     }).addTo(map);
     var path = new L.LayerGroup().addTo(map);
     fetchLocal('../data/activity_799480984.geojson').then((response) => {
-      const geojson = L.geoJson(JSON.parse(response)).addTo(path);
-      map.fitBounds(geojson.getBounds());
+      const geojson = JSON.parse(response);
+      const style_function = (feature) => {
+        const max_segment_speed = feature.properties.MaximumSpeed;
+        const pace = MPS_TO_MPM / max_segment_speed;
+        const scaled_value = linearScale(6, 2, pace);
+        var def_style = {
+            color: COLORS[scaled_value],
+            weight: 3,
+            opacity: 0.6
+        };
+        // if(feature.properties.MaximumSpeed > 4) {
+        //   return fast_style;
+        // }
+        return def_style;
+      };
+      const json_layer = L.geoJson(geojson, {style: style_function}).addTo(path);
+      map.fitBounds(json_layer.getBounds(), json_layer);
     });
   </script>
 </html>
