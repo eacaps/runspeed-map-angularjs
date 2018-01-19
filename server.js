@@ -8,6 +8,6 @@ app.use(express.static(staticPath));
 app.use('/dist', express.static('dist'))
 app.use('/data', express.static('data'))
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log('listening');
 });
