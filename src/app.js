@@ -1,6 +1,8 @@
 import TcxParser from 'tcx';
+import angular from 'angular';
 import Utils from './utils';
 import SpeedMap from './speedmap';
+import ScaleComponent from './scalecomponent';
 
 const map = new SpeedMap();
 
@@ -27,26 +29,11 @@ fetch('../data/activity_925308754.geojson').then((response) => {
   map.processGeojson(geojson);
 });
 
-import angular from 'angular';
-
-let app = () => {
-  return {
-    template: `<span>hi</span>`,
-    controller: 'AppCtrl',
-    controllerAs: 'app'
-  }
-};
-
-class AppCtrl {
-  constructor() {
-    this.url = 'https://github.com/preboot/angular-webpack';
-  }
-}
-
 const MODULE_NAME = 'app';
+const component = new ScaleComponent();
 
 angular.module(MODULE_NAME, [])
-  .directive('app', app)
-  .controller('AppCtrl', AppCtrl);
+  .directive('scale', component.component())
+  .controller('ScaleCtrl', component.ctrl());
 
 export default MODULE_NAME;
