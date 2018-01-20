@@ -1,3 +1,22 @@
+const COLORS = [
+  '#00FF00',
+  '#11EE00',
+  '#22DD00',
+  '#33CC00',
+  '#44BB00',
+  '#55AA00',
+  '#669900',
+  '#778800',
+  '#887700',
+  '#996600',
+  '#AA5500',
+  '#BB4400',
+  '#CC3300',
+  '#DD2200',
+  '#EE1100',
+  '#FF0000',
+];
+
 export default {
   linearScale: (rawMin, rawRange, score, scaleRange) => {
     if (rawRange < 1) return 0;
@@ -8,6 +27,9 @@ export default {
     const dist = DistanceOnGeoid(p1.lat, p1.lng, p2.lat, p2.lng);
     const speed_mps = dist / time;
     return speed_mps;
+  },
+  getScale: () => {
+    return COLORS;
   }
 };
 

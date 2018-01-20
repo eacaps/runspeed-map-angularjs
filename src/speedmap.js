@@ -2,25 +2,7 @@ import L from 'leaflet';
 import Utils from './utils';
 
 const MPS_TO_MPM = 26.8224;
-const SCALE_RANGE = 15;
-const COLORS = [
-  '#00FF00',
-  '#11EE00',
-  '#22DD00',
-  '#33CC00',
-  '#44BB00',
-  '#55AA00',
-  '#669900',
-  '#778800',
-  '#887700',
-  '#996600',
-  '#AA5500',
-  '#BB4400',
-  '#CC3300',
-  '#DD2200',
-  '#EE1100',
-  '#FF0000',
-];
+
 
 export default class SpeedMap {
   constructor() {
@@ -32,9 +14,11 @@ export default class SpeedMap {
   }
   styleSpeed(metersps_speed) {
     const pace = MPS_TO_MPM / metersps_speed;
-    const scaled_value = Utils.linearScale(6, 3, pace, SCALE_RANGE);
+    const scale = Utils.getScale();
+    const scale_range = scale.length - 1;
+    const scaled_value = Utils.linearScale(6, 3, pace, scale_range);
     var style = {
-        color: COLORS[scaled_value],
+        color: scale[scaled_value],
         weight: 3,
         opacity: 0.6
     };
