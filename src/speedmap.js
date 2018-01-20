@@ -3,7 +3,6 @@ import Utils from './utils';
 
 const MPS_TO_MPM = 26.8224;
 
-
 export default class SpeedMap {
   constructor() {
     this.map = L.map('mapid');
@@ -14,9 +13,10 @@ export default class SpeedMap {
   }
   styleSpeed(metersps_speed) {
     const pace = MPS_TO_MPM / metersps_speed;
-    const scale = Utils.getScale();
+    const scale = Utils.getColorScale();
     const scale_range = scale.length - 1;
-    const scaled_value = Utils.linearScale(6, 3, pace, scale_range);
+    const speed_range = Utils.getSpeedRange();
+    const scaled_value = Utils.linearScale(speed_range.min, (speed_range.max - speed_range.min), pace, scale_range);
     var style = {
         color: scale[scaled_value],
         weight: 3,

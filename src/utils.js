@@ -17,6 +17,9 @@ const COLORS = [
   '#FF0000',
 ];
 
+let MIN = 6;
+let MAX = 9;
+
 export default {
   linearScale: (rawMin, rawRange, score, scaleRange) => {
     if (rawRange < 1) return 0;
@@ -28,8 +31,14 @@ export default {
     const speed_mps = dist / time;
     return speed_mps;
   },
-  getScale: () => {
+  getColorScale: () => {
     return COLORS;
+  },
+  getSpeedRange: () => {
+    return {
+      min: MIN,
+      max: MAX
+    };
   }
 };
 
