@@ -7,7 +7,7 @@ const map = new SpeedMap();
 document.getElementById('file').onchange = (event) => {
   const file_input = document.getElementById('file');
   const file = file_input.files[0];
-  fr = new FileReader();
+  const fr = new FileReader();
   fr.onload = () => {
     var parser = new DOMParser();
     var doc = parser.parseFromString(fr.result, "text/xml");

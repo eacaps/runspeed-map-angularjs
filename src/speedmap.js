@@ -61,6 +61,7 @@ export default class SpeedMap {
     }
   }
   processGeojson(geojson) {
+    this.path.clearLayers();
     const json_layer = L.geoJson(geojson);
     const layers = json_layer.getLayers();
     for(let layer of layers) {
