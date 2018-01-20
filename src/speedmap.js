@@ -1,3 +1,4 @@
+import L from 'leaflet';
 import Utils from './utils';
 
 const MPS_TO_MPM = 26.8224;
