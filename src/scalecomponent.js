@@ -1,7 +1,9 @@
+import Utils from './utils';
 
 class ScaleCtrl {
   constructor() {
-    this.scale = 'scale goes here';
+    this.scale = Utils.getColorScale();
+    this.range = Utils.getSpeedRange();
   }
 }
 
@@ -12,9 +14,16 @@ export default class ScaleComponent {
   component() {
     return () => {
       return {
-        template: `<span>{{app.scale}}</span>`,
+        template: `
+          <div>
+            <span>Pace(minutes/mile): </span>
+            <span>{{ctrl.range.min}} </span>
+            <span ng-repeat="color in ctrl.scale"><div ng-style="{backgroundColor: color, height: '10px', width: '10px', display: 'inline-block'}"/></div></span>
+            <span>{{ctrl.range.max}} </span>
+          </div>
+        `,
         controller: 'ScaleCtrl',
-        controllerAs: 'app'
+        controllerAs: 'ctrl'
       };
     }
   }
