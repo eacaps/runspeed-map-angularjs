@@ -1,4 +1,4 @@
-# runspeed-map
+# runspeed-map-angularjs
 I made this to brush up on starting a project from scratch. I liked interface Garmin already has for displaying all my GPS running data but I decided it would be a fun experiment to see if I could do a slightly different take on the data.
 
 To challenge myself I also decided to try to implement the basic scale component using various frameworks. This is the AngularJS version, you can see the React version here: https://github.com/eacaps/runspeed-map-angularjs.
@@ -14,6 +14,7 @@ Running this app requires git and a relatively recent version of node and npm.
 This will start the app at http://localhost:3000/.
 
 ## dev
+    $ npm run dev
 Dev mode for this runs webpack watch. Since there's no fancy JS transpiling going on, webpack is the way to go.
 
 ## testing
