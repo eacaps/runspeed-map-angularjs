@@ -26,8 +26,8 @@ export default {
     let min = Math.min(rawMin + rawRange, score);
     return parseInt((Math.max(0, (min - rawMin)) * scaleRange) / rawRange, 10);
   },
-  getSpeed: (p1, p2, time) => {
-    const dist = DistanceOnGeoid(p1.lat, p1.lng, p2.lat, p2.lng);
+  getSpeed: (lat1, lon1, lat2, lon2, time) => {
+    const dist = DistanceOnGeoid(lat1, lon1, lat2, lon2);
     const speed_mps = dist / time;
     return speed_mps;
   },

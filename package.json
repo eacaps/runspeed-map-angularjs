@@ -11,10 +11,11 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "test": "test",
     "start": "node server.js",
-    "dev": "node server.js & webpack src/app.js dist/bundle.js -w",
-    "postinstall": "webpack src/app.js dist/bundle.js"
+    "bundle": "webpack src/app.js dist/bundle.js",
+    "watch": "webpack src/app.js dist/bundle.js -w",
+    "dev": "npm start & npm run watch",
+    "postinstall": "npm run bundle"
   },
   "repository": {
     "type": "git",

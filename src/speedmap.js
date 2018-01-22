@@ -9,7 +9,7 @@ export default class SpeedMap {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
-    this.path = new L.LayerGroup().addTo(this.map);
+    this.path = new L.FeatureGroup().addTo(this.map);
   }
   styleSpeed(metersps_speed) {
     const pace = MPS_TO_MPM / metersps_speed;
@@ -24,9 +24,9 @@ export default class SpeedMap {
     };
     return style;
   }
-  processLayer(layer) {
-    const lat_lons = layer.getLatLngs();
-    const total_seconds = layer.feature.properties.TotalTimeSeconds;
+  processFeature(feature) {
+    const lat_lons = feature.geometry.coordinates
+    const total_seconds = feature.properties.TotalTimeSeconds;
     const seconds_per_segment = total_seconds / lat_lons.length;
     let first = lat_lons[0];
     let coloring = 0;
@@ -35,23 +35,22 @@ export default class SpeedMap {
         coloring = 0;
       }
       const second = lat_lons[x];
-      const latlngs = [first, second];
+      // reverse reverses in place
+      const latlngs = [first.reverse(), second.reverse()];
 
-      const speed = Utils.getSpeed(first, second, seconds_per_segment);
-      // console.log(speed);
+      const speed = Utils.getSpeed(first[0], first[1], second[0], second[1], seconds_per_segment);
       var style = this.styleSpeed(speed);
       const line = new L.Polyline(latlngs, style);
-      first = lat_lons[x];
+      // undo reverse
+      first = lat_lons[x].reverse();
       line.addTo(this.path);
     }
   }
   processGeojson(geojson) {
     this.path.clearLayers();
-    const json_layer = L.geoJson(geojson);
-    const layers = json_layer.getLayers();
-    for(let layer of layers) {
-      this.processLayer(layer);
+    for(let feature of geojson.features) {
+      this.processFeature(feature);
     }
-    this.map.fitBounds(json_layer.getBounds(), json_layer);
+    this.map.fitBounds(this.path.getBounds(), this.path);
   }
 }

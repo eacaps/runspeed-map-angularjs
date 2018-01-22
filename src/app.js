@@ -4,6 +4,19 @@ import Utils from './utils';
 import SpeedMap from './speedmap';
 import ScaleComponent from './scalecomponent';
 
+const NON_MAP_ELEMENT_HEIGHTS = 50 + 30 + 16;
+
+const SetMapHeight = () => {
+  const map_height = window.innerHeight - NON_MAP_ELEMENT_HEIGHTS;
+  document.getElementById('mapid').style.height = map_height + 'px';
+}
+
+SetMapHeight();
+
+window.onresize = () => {
+  SetMapHeight();
+}
+
 const map = new SpeedMap();
 
 document.getElementById('file').onchange = (event) => {

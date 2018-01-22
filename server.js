@@ -9,5 +9,5 @@ app.use('/dist', express.static('dist'))
 app.use('/data', express.static('data'))
 
 app.listen(process.env.PORT || 3000, function() {
-  console.log('listening');
+  console.log('runspeed map started');
 });
