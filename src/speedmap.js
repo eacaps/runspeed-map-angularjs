@@ -6,9 +6,17 @@ const MPS_TO_MPM = 26.8224;
 export default class SpeedMap {
   constructor() {
     this.map = L.map('mapid');
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
+    const mapboxUrl = 'https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}';
+    const accessToken = 'pk.eyJ1IjoiZWFjYXBzIiwiYSI6ImNqY3JtNW94bDAwdWgyd3VzMGV5eGNpdm4ifQ.7N54IDeHZs2NFmV6hKg5Dg';
+    /*
+    streets-v9
+    satellite-streets-v9
+    light-v9
+    dark-v9
+    outdoors-v9
+    */
+    const mapbox_layer = L.tileLayer(mapboxUrl, {id: 'outdoors-v9', attribution: '<a href=https://www.mapbox.com/>Mapbox</a>', maxZoom: 20, accessToken: accessToken});
+    mapbox_layer.addTo(this.map);
     this.path = new L.FeatureGroup().addTo(this.map);
   }
   styleSpeed(metersps_speed) {
