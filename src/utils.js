@@ -21,6 +21,7 @@ let MIN = 6;
 let MAX = 9;
 
 export default {
+  MPS_TO_MPM: 26.8224,
   linearScale: (rawMin, rawRange, score, scaleRange) => {
     if (rawRange < 1) return 0;
     let min = Math.min(rawMin + rawRange, score);

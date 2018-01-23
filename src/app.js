@@ -1,6 +1,5 @@
-import TcxParser from 'tcx';
 import angular from 'angular';
-import Utils from './utils';
+import TcxFileParser from './tcxfileparser';
 import SpeedMap from './speedmap';
 import ScaleComponent from './scalecomponent';
 
@@ -27,9 +26,10 @@ document.getElementById('file').onchange = (event) => {
     var parser = new DOMParser();
     var doc = parser.parseFromString(fr.result, "text/xml");
     // a tcx file dom, via xmldom
-    const geojson = TcxParser(doc);
-    console.log(geojson);
-    map.processGeojson(geojson);
+    // const geojson = TcxParser(doc);
+    // console.log(geojson);
+    // map.processGeojson(geojson);
+    new TcxFileParser().addToMap(doc, map);
   };
   fr.readAsText(file);
 }
@@ -39,7 +39,8 @@ fetch('../data/activity_925308754.geojson').then((response) => {
   return response.text();
 }).then((text) => {
   const geojson = JSON.parse(text);
-  map.processGeojson(geojson);
+  // map.processGeojson(geojson);
+  new TcxFileParser().processFeatures(geojson, map);
 });
 
 const MODULE_NAME = 'app';
