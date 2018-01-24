@@ -26,21 +26,19 @@ document.getElementById('file').onchange = (event) => {
     var parser = new DOMParser();
     var doc = parser.parseFromString(fr.result, "text/xml");
     // a tcx file dom, via xmldom
-    // const geojson = TcxParser(doc);
-    // console.log(geojson);
-    // map.processGeojson(geojson);
     new TcxFileParser().addToMap(doc, map);
   };
   fr.readAsText(file);
 }
 
 // fetch charleston data
-fetch('../data/activity_925308754.geojson').then((response) => {
+fetch('../data/activity_925308754.tcx').then((response) => {
   return response.text();
 }).then((text) => {
-  const geojson = JSON.parse(text);
-  // map.processGeojson(geojson);
-  new TcxFileParser().processFeatures(geojson, map);
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(text, "text/xml");
+  // a tcx file dom, via xmldom
+  new TcxFileParser().addToMap(doc, map);
 });
 
 const MODULE_NAME = 'app';

@@ -8,7 +8,7 @@ export default class TcxFileParser {
     const geojson = this.parseFile(file);
     this.processFeatures(geojson, map);
   }
-  parseFile(file) {
+  parseFile(doc) {
     const geojson = TcxParser(doc);
     return geojson;
   }
