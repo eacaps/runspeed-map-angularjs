@@ -2,8 +2,6 @@ import TcxParser from 'tcx';
 import Utils from './utils';
 
 export default class TcxFileParser {
-  constructor() {
-  }
   addToMap(file, map) {
     const geojson = this.parseFile(file);
     this.processFeatures(geojson, map);
