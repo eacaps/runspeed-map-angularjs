@@ -16,7 +16,6 @@ export default class ScaleComponent {
       return {
         template: `
           <div>
-            <span>Pace(minutes/mile): </span>
             <span>{{ctrl.range.min}} </span>
             <span ng-repeat="color in ctrl.scale"><div ng-style="{backgroundColor: color, height: '10px', width: '10px', display: 'inline-block'}"/></div></span>
             <span>{{ctrl.range.max}} </span>

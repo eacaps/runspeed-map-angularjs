@@ -38,6 +38,6 @@ export default class SpeedMap {
     this.path.clearLayers();
   }
   zoomToLayer() {
-    this.map.fitBounds(this.path.getBounds(), this.path);
+    this.map.fitBounds(this.path.getBounds(), {padding: [30, 30]});
   }
 }

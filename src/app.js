@@ -3,7 +3,7 @@ import TcxFileParser from './tcxfileparser';
 import SpeedMap from './speedmap';
 import ScaleComponent from './scalecomponent';
 
-const NON_MAP_ELEMENT_HEIGHTS = 50 + 30 + 16;
+const NON_MAP_ELEMENT_HEIGHTS = 64;
 
 const SetMapHeight = () => {
   const map_height = window.innerHeight - NON_MAP_ELEMENT_HEIGHTS;
@@ -18,7 +18,7 @@ window.onresize = () => {
 
 const map = new SpeedMap();
 
-document.getElementById('file').onchange = (event) => {
+document.getElementById('rsm-file-upload').onchange = (event) => {
   const file_input = document.getElementById('file');
   const file = file_input.files[0];
   const fr = new FileReader();

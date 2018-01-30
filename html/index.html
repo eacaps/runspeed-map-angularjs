@@ -1,18 +1,58 @@
+<!DOCTYPE html>
 <html ng-app='app'>
   <head>
     <title>Runspeed Map</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel='stylesheet' href='https://unpkg.com/leaflet@1.3.1/dist/leaflet.css'
       integrity='sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=='
       crossorigin=''
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+      :root {
+        --mdc-theme-primary: #0e4ead;
+      }
+      input[type="file"] {
+        display: none;
+      }
+    </style>
   </head>
-  <body style='font-family: Arial;'>
+  <body class="mdc-typography" style='font-family: Arial;margin: 0;'>
+
     <div style='display:flex; flex-direction:column'>
-      <div style='height: 50px'>Runspeed Map - this app was designed to load Garmin TCX files and create a colorized path based on segment speed. Code is available on github: <a href='https://github.com/eacaps/runspeed-map-angularjs'>https://github.com/eacaps/runspeed-map-angularjs</a>.</div>
+      <header class="mdc-toolbar demo-toolbar">
+        <div class="mdc-toolbar__row">
+          <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <a href="#" class="material-icons mdc-toolbar__menu-icon">menu</a>
+            <span class="mdc-toolbar__title">TCX Runspeed Map</span>
+          </section>
+          <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+            <label for='rsm-file-upload' class="custom-file-upload">
+              <i class="material-icons mdc-toolbar__icon" aria-label="Open" alt="Open">loupe</i>
+            </label>
+            <input type='file' id='rsm-file-upload'/>
+            <a style='color:#fff;' class='mdc-toolbar__icon' href='https://github.com/eacaps/runspeed-map-angularjs' target='_blank'>
+              <svg aria-hidden="true" class="" height="24" style='fill:white;' version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+            </a>
+          </section>
+        </div>
+      </header>
       <div id='mapid'></div>
-      <div style='display: flex;justify-content: space-between; height: 30px;align-items: center'>
-        <input type='file' id='file'/>
-        <scale></scale>
+      <div style='display: flex;justify-content: space-between; align-items: center;position:fixed;bottom:0px;z-index:999;width:100%;'>
+        <div style='width:100%;height:100%;display:flex;justify-content:center;'>
+          <div style='box-shadow:rgba(0, 0, 0, 0.1) 0px -2px 5px;background-color:rgb(238, 238, 238);'>
+            <div style='background-color:var(--mdc-theme-primary,#6200ee);display:flex;align-items:center;height:30px'>
+              <span style='margin-left: 12px;color: #fff'>Pace(min/mile)</span>
+            </div>
+            <div style='height:30px;margin-left:12px;margin-right:12px;display:flex;align-items:center;'>
+              <scale></scale>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
